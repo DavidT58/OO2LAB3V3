@@ -14,6 +14,8 @@ public class Krug {
 		precnik = pr;
 	}
 	
+	public Vektor getPozicija() { return polozajCentra; }
+	
 	public boolean preklapaSe(Krug k) {
 		double x = (polozajCentra.getX() - k.polozajCentra.getX()) * (polozajCentra.getX() - k.polozajCentra.getX());
 		double y = (polozajCentra.getY() - k.polozajCentra.getY()) * (polozajCentra.getY() - k.polozajCentra.getY());
@@ -27,7 +29,7 @@ public class Krug {
 	public void iscrtaj(Scena s) {
 		Graphics g = s.getGraphics();
 		g.setColor(boja);
-		g.fillOval((int)polozajCentra.getX(), (int)polozajCentra.getY(), (int)precnik, (int)precnik);
+		g.fillOval((int)(polozajCentra.getX()), (int)(polozajCentra.getY()), (int)precnik, (int)precnik);
 	}
 	
 }

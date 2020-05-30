@@ -13,6 +13,8 @@ public class KruznaFigura extends Krug {
 		scena = s;
 	}
 
+	public boolean getPreklopljena() { return preklopljena; }
 	
+	public void setPreklopljena(boolean t) { preklopljena = t; }
 	
 }

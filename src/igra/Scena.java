@@ -11,6 +11,7 @@ import java.util.Random;
 @SuppressWarnings("serial")
 public class Scena extends Canvas implements Runnable {
 
+	public enum Smer{ LEVO, DESNO };
 	Igra igra;
 	Igrac igrac;
 	Thread nit = new Thread(this);
@@ -21,6 +22,19 @@ public class Scena extends Canvas implements Runnable {
 		setBounds(0, 0, i.getWidth(), i.getHeight());
 		figure = new ArrayList<KruznaFigura>();
 		
+	}
+	
+	public void pomeriIgraca(Smer s) {
+		switch(s) {
+		case DESNO:
+			igrac.pomeri(10);
+			System.out.println("Pomeren u desno");
+			break;
+		case LEVO:
+			igrac.pomeri(-10);
+			System.out.println("Pomeren u levo");
+			break;
+		}
 	}
 	
 	@Override
@@ -80,6 +94,8 @@ public class Scena extends Canvas implements Runnable {
 			}
 			if(igrac.preklapaSe(i)) {
 				System.out.println("Igra zaustavljena");
+				System.out.println(igrac.getPozicija().getX() + ", " + igrac.getPozicija().getY());
+				System.out.println(i.getPozicija().getX() + ", " + i.getPozicija().getY());
 				zaustavi();	
 			}
 		}

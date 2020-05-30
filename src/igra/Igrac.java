@@ -9,6 +9,13 @@ public class Igrac extends KruznaFigura {
 		super(p, Color.GREEN, pr, br, s);
 	}
 	
+	public void pomeri(int x) {
+		if((x + polozajCentra.getX() < scena.getWidth()) && (x + polozajCentra.getX() > 0)) {
+			polozajCentra = polozajCentra.saberi(new Vektor(x, 0));
+			
+		}
+	}
+	
 	@Override
 	public void iscrtaj(Scena s) {
 		super.iscrtaj(s);

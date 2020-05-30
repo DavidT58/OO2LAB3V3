@@ -14,8 +14,8 @@ public class Igrac extends KruznaFigura {
 		super.iscrtaj(s);
 		Graphics g = s.getGraphics();
 		g.setColor(Color.BLUE);
-		int xpos = (int)(polozajCentra.getX()/2 + precnik/2);
-		int ypos = (int)(polozajCentra.getY()/2 + precnik/2);
+		int xpos = (int)(polozajCentra.getX() + precnik/4);
+		int ypos = (int)(polozajCentra.getY() + precnik/4);
 		g.fillOval(xpos, ypos, (int)precnik/2, (int)precnik/2);
 	}
 

@@ -21,7 +21,7 @@ public class Krug {
 		double c1c2 = Math.sqrt(x + y);
 		double r1r2 = precnik + k.precnik;
 		
-		return (c1c2 == r1r2) || (c1c2 < r1r2);
+		return (c1c2 <= r1r2);
 	}
 	
 	public void iscrtaj(Scena s) {

@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 
 public class Igra extends Frame {
 	
-	Scena s;
+	private Scena s;
 	
 	public Igra() {
 		super("Baloni");

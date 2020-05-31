@@ -12,10 +12,10 @@ import java.util.Random;
 public class Scena extends Canvas implements Runnable {
 
 	public enum Smer{ LEVO, DESNO };
-	Igra igra;
-	Igrac igrac;
-	Thread nit = new Thread(this);
-	ArrayList<KruznaFigura> figure;
+	private Igra igra;
+	private Igrac igrac;
+	private Thread nit = new Thread(this);
+	private ArrayList<KruznaFigura> figure;
 	
 	public Scena(Igra i) {
 		igra = i;
@@ -44,13 +44,13 @@ public class Scena extends Canvas implements Runnable {
 				repaint();
 				generisiBalon();
 				proveriPreklapanja();
-				
+				protekloVreme(60);
 				Thread.sleep(60);
 			}
 		} catch (InterruptedException e) {}
 	}
 	
-	public void pokreni() {
+	public synchronized void pokreni() {
 		igrac = new Igrac(new Vektor(this.getWidth()/2, this.getHeight()-100), 30, new Vektor(0,0), this);
 		//figure.add(igrac);
 		nit.start();
@@ -99,6 +99,20 @@ public class Scena extends Canvas implements Runnable {
 				zaustavi();	
 			}
 		}
+	}
+	
+	private void protekloVreme(int ms) {
+		int j = -1;
+		for(KruznaFigura i : figure) {
+			i.prosloVreme(ms);
+			double pozX = i.getPozicija().getX();
+			double pozY = i.getPozicija().getY();
+			if(pozX > getWidth() || pozY > getHeight() || pozX < 0 || pozY < 0) {
+				j = figure.indexOf(i);
+				System.out.println("figura van scene");
+			}
+		}
+		if(j >= 0) figure.remove(j);
 	}
 	
 	@Override

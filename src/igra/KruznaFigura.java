@@ -4,6 +4,7 @@ import java.awt.Color;
 
 public class KruznaFigura extends Krug {
 	protected Vektor vektorBrzine;
+	protected long vremeOdStvaranja= 0;
 	protected Scena scena;
 	protected boolean preklopljena;
 
@@ -16,5 +17,11 @@ public class KruznaFigura extends Krug {
 	public boolean getPreklopljena() { return preklopljena; }
 	
 	public void setPreklopljena(boolean t) { preklopljena = t; }
+	
+	public synchronized void prosloVreme(int t) {
+		vremeOdStvaranja += t;
+		Vektor pomeraj = vektorBrzine.pomnozi(t);
+		polozajCentra = polozajCentra.saberi(pomeraj);
+	}
 	
 }

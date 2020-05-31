@@ -44,19 +44,19 @@ public class Scena extends Canvas implements Runnable {
 				repaint();
 				generisiBalon();
 				proveriPreklapanja();
-				protekloVreme(60);
-				Thread.sleep(60);
+				protekloVreme(500);
+				Thread.sleep(500);
 			}
 		} catch (InterruptedException e) {}
 	}
 	
-	public synchronized void pokreni() {
+	public void pokreni() {
 		igrac = new Igrac(new Vektor(this.getWidth()/2, this.getHeight()-100), 30, new Vektor(0,0), this);
 		//figure.add(igrac);
 		nit.start();
 	}
 	
-	public synchronized void zaustavi() {
+	public void zaustavi() {
 		if(nit != null && nit.isAlive())
 			nit.interrupt();
 		nit = null;
@@ -79,7 +79,7 @@ public class Scena extends Canvas implements Runnable {
 			Random r = new Random();
 			int r1 = r.nextInt(igra.getWidth());
 			int r2 = r.nextInt(igra.getHeight());
-			Balon b = new Balon(new Vektor(r1, r2), Color.RED, 20, new Vektor(0,0), this);
+			Balon b = new Balon(new Vektor(r1, r2), Color.RED, 20, new Vektor(1,1), this);
 			dodajFiguru(b);
 		}
 	}
@@ -101,7 +101,7 @@ public class Scena extends Canvas implements Runnable {
 		}
 	}
 	
-	private void protekloVreme(int ms) {
+	private synchronized void protekloVreme(int ms) {
 		int j = -1;
 		for(KruznaFigura i : figure) {
 			i.prosloVreme(ms);
@@ -116,7 +116,7 @@ public class Scena extends Canvas implements Runnable {
 	}
 	
 	@Override
-	public void paint(Graphics g) {
+	public synchronized void paint(Graphics g) {
 		igrac.iscrtaj(this);
 		for(KruznaFigura k: figure)
 			k.iscrtaj(this);

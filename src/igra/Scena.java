@@ -79,7 +79,7 @@ public class Scena extends Canvas implements Runnable {
 			Random r = new Random();
 			int r1 = r.nextInt(igra.getWidth());
 			int r2 = r.nextInt(50);
-			Balon b = new Balon(new Vektor(r1, r2), Color.RED, 20, new Vektor(0,3), this);
+			Balon b = new Balon(new Vektor(r1, r2), Color.RED, 20, new Vektor(0,20), this);
 			dodajFiguru(b);
 		}
 	}

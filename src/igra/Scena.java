@@ -44,14 +44,14 @@ public class Scena extends Canvas implements Runnable {
 				repaint();
 				generisiBalon();
 				proveriPreklapanja();
-				protekloVreme(500);
-				Thread.sleep(500);
+				protekloVreme(60);
+				Thread.sleep(60);
 			}
 		} catch (InterruptedException e) {}
 	}
 	
 	public void pokreni() {
-		igrac = new Igrac(new Vektor(this.getWidth()/2, this.getHeight()-100), 30, new Vektor(0,0), this);
+		igrac = new Igrac(new Vektor(this.getWidth()/2, this.getHeight()-75), 30, new Vektor(0,0), this);
 		//figure.add(igrac);
 		nit.start();
 	}
@@ -78,8 +78,8 @@ public class Scena extends Canvas implements Runnable {
 		if(verovatnoca <= 0.1) {
 			Random r = new Random();
 			int r1 = r.nextInt(igra.getWidth());
-			int r2 = r.nextInt(igra.getHeight());
-			Balon b = new Balon(new Vektor(r1, r2), Color.RED, 20, new Vektor(1,1), this);
+			int r2 = r.nextInt(50);
+			Balon b = new Balon(new Vektor(r1, r2), Color.RED, 20, new Vektor(0,3), this);
 			dodajFiguru(b);
 		}
 	}
